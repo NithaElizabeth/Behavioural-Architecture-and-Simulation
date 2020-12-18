@@ -1,23 +1,24 @@
 # Experimental Robotics Laboratory - Assignment 2
 #### Behavioural Architecture and its Simulations
 ## Intoduction
-This repository contains the Assignment 2 of Experimental Robotics Lab.The aim of this assignment is to implement a behavioural architecure for a robot that moves in a discrete 2D envirionment.The architecture involves nodes for changing the location of the ball, a finite state machine as the command manager and components for changing the position of the Robot and Ball to the desired goal locations.\
+This repository contains the Assignment 2 of Experimental Robotics Lab.The aim of this assignment is to implement a model based simulation for the behavioural architecure's state machine that was completed as assignment 1, for a pet (dog-like) robot that moves in a discrete 2D envirionment.The architecture involves nodes for changing the location of the ball, a finite state machine as the command manager and components for changing the position of the Robot and Ball to the desired goal locations.\
 The project was developed on ROS-kinetic and Python and state machine is implemented on Smach. 
 ## Software Architecture
 ![expro_arch2](https://user-images.githubusercontent.com/47361086/98937966-9ed63c00-2500-11eb-920e-5707efc8079d.PNG)
 The picture above is the component diagram of the implemented system.The major components of the system are :
-* Verbal Interaction
-* Gesture Interaction
 * State Machine
-* Control
-#### Verbal Interaction Component
-This component is responsible for obtaining the verbal orders from the operator(person).This is used to receive the voice commands of the person and then to process it . Once processed, it will be passed on to the state machine to initiate the corresponding behavior. In this project, it is assumed that the operator says a command of type string (eg. "play" ) and it is processed and send to to the state machine.
-#### Gesture Interaction
-This component is responsible for obtaining the gestures from the operator(person). This components will recieve the cordinates of the location pointed by the operator and it is published to the state machine so that if the robot is in state "play" it should move the location pointed by the operator.
+* Move_Ball
+* Go to point -Robot
+* Go to point -Ball
 #### State Machine
-This acts as the command manager.It switches between three states i.e. "sleep", "normal", "play". "Sleep" being the initial state, the robot rest in its home location. At "normal" state, the robot wanders randomly throughout the envirionment. In the "play" state , the robot moves to the location of the operator and then follows the operators gestures and move toward the position pointed by the operator.
-#### Control
-This component is responsible for the robot motion and control. After obtaining the location or commands from the previous components, the robot moves to that position respectively.This component also publishes its current location via topic /position.
+This acts as the command manager.It switches between three states i.e. "sleep", "normal", "play". "Sleep" being the initial state, the robot rest in its home location. At "normal" state, the robot wanders randomly throughout the envirionment until it sees a green ball. On detecting the green ball, the robot changes its state to "play". In the "play" state , the robot moves to the location of the ball and then follows the green ball until stops.
+#### The Move Ball Component
+This component is responsible for giving pos for moving and changing the position and mode of the Green ball used in this simulation.This node assumes that the operators(user operating this robot) gives one out of two commands : MOVE , DISAPPEAR at a time. Hence it randomly chooses either MOVE or Disappear as user command. Based on this user command the ball navigates and changes its position. If the user command is MOVE, the ball moves to some random position and if the user command DISAPPEAR , the ball will no longer be seen on the 2D world. In this node, the action client uses the ball/reaching_goal topic to move the ball.
+#### Go to point -Robot
+This component is responsible for making the pet robot navigate in the modelled world based on the pos(target position) it receives.
+#### Go to point -Ball
+This component is responsible for making the green ball navigate in the modelled world based on the pos(target position) it receives.
+
 ## State Diagram
 This section explains how the states are decided. As illustrated in the state diagram below, there are three states : "sleep", "normal", "play".
 ![Untitled Document (1)](https://user-images.githubusercontent.com/47361086/98930126-a0e6cd80-24f5-11eb-8624-acb703c2cd10.png)
