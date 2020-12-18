@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <!-- These are the arguments you can pass this launch file, for example paused:=true -->
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="extra_gazebo_args" default=""/>
@@ -20,10 +20,11 @@
   <arg name="use_clock_frequency" default="false"/>
   <arg name="pub_clock_frequency" default="100"/>
 
-  <!-- set use_sim_time flag -->
+  <!-- Set use_sim_time flag -->
   <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+  <param name="current"  type="string"  value="sleep" />
 
-  <!-- set command arguments -->
+  <!-- Set command arguments -->
   <arg unless="$(arg paused)" name="command_arg1" value=""/>
   <arg     if="$(arg paused)" name="command_arg1" value="-u"/>
   <arg unless="$(arg recording)" name="command_arg2" value=""/>
@@ -33,53 +34,55 @@
   <arg unless="$(arg debug)" name="script_type" value="gzserver"/>
   <arg     if="$(arg debug)" name="script_type" value="debug"/>
 
-  <!-- start gazebo server-->
+  <!-- Start gazebo server-->
   <group if="$(arg use_clock_frequency)">
-    <param name="gazebo/pub_clock_frequency" value="$(arg pub_clock_frequency)" />
+    <param name="gazebo/pub_clock_frequency" value="$(arg pub_clock_frequency)"/>
   </group>
+
   <node name="gazebo" pkg="gazebo_ros" type="$(arg script_type)" respawn="$(arg respawn_gazebo)" output="screen"
-	args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) -e $(arg physics) $(arg extra_gazebo_args) $(arg world_name)" />
+	      args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) -e $(arg physics) $(arg extra_gazebo_args) $(arg world_name)"/>
 	
-  <!-- start gazebo client -->
+  <!-- Start gazebo client -->
   <group if="$(arg gui)">
     <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
   </group>
 
+  <!-- The robot, ball and human descriptions -->
   <arg name="ns1" value="robot"/>
-  <param name="$(arg ns1)/robot_description" 
-	 command="$(find xacro)/xacro --inorder $(find exp_assignment2)/urdf/robot.xacro" />
-	
+    <param name="$(arg ns1)/robot_description" command="$(find xacro)/xacro --inorder $(find exp_assignment2)/urdf/robot.xacro"/>
+  
   <arg name="ns2" value="ball"/> 
-	 <param name="$(arg ns2)/ball_description" 
-	 command="$(find xacro)/xacro --inorder $(find exp_assignment2)/urdf/ball.xacro" />
-	
-	 <param name="human_description1" textfile="$(find exp_assignment2)/urdf/human.urdf" />
+	  <param name="$(arg ns2)/ball_description" command="$(find xacro)/xacro --inorder $(find exp_assignment2)/urdf/ball.xacro"/>
+	  
+  <param name="human_description1" textfile="$(find exp_assignment2)/urdf/human.urdf"/>
       
+  <!-- To run the node moving the ball -->
   <node name="urdf_spawner_human1" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
         args="-urdf -model human1 -param human_description1 -x -7 -y 7 -z 0.34 -R 0 -P 0 -Y 0"/>
-   <node name="move_ball" pkg="exp_assignment2" type="move_ball.py" output="screen"/>
-  <!--<node name ='move_ball' pkg='exp_assignment2' type='move_ball.py' output='screen' /> -->
-   <!-- Load joint controller configurations from YAML file to parameter server --> 
-  <rosparam file= "$(find exp_assignment2)/config/motors_config.yaml" command="load" ns="/robot" /> 
+  
+  <node name="move_ball" pkg="exp_assignment2" type="move_ball.py" output="screen"/>
 
+  <!-- To run the robot and run its action server and nodes under that Group-->
   <group ns="$(arg ns1)">
+    <rosparam file="$(find exp_assignment2)/config/motors_config.yaml" command="load" ns="/$(arg ns1)"/>
   	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-	args="-urdf -model $(arg ns1) -param robot_description -x -5 -y 7 -Y 3.14 -z 0.05"/>
-	<node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="--namespace=/robot
-        joint_state_controller
-        joint_position_controller
-        --shutdown-timeout 3">
-        </node>
-     <!--<node pkg='exp_assignment2' type='follow_ball.py'
-      name='follow_ball_node' output='screen' respawn="false"/> -->
-      <!--<node name="example_ball" pkg="exp_assignment2" type="robot_following.py" /> -->
+	        args="-urdf -model $(arg ns1) -param robot_description -x -5 -y 7 -Y 3.14 -z 0.05"/>
+    <node name="position_server_robot" pkg="exp_assignment2" type="go_to_point_robot.py" output="screen"/>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="--namespace=/$(arg ns1)
+      joint_state_controller
+      joint_position_controller
+      --shutdown-timeout 3">
+    </node>
+    
   </group>
   
+  <!-- To run the ball and run its action server -->
   <group ns="$(arg ns2)">
   	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-	args="-urdf -model $(arg ns2) -param ball_description -x -7 -y 6 -z 0.25"/>
-	<node name="position_server" pkg="exp_assignment2" type="go_to_point_ball.py" output="screen" />
-	<!--<node name="controller" pkg="exp_assignment2" type="random_robot" /> -->
+	        args="-urdf -model $(arg ns2) -param ball_description -x -7 -y 6 -z -3"/>
+	  <node name="position_server_ball" pkg="exp_assignment2" type="go_to_point_ball.py" output="screen"/>
   </group>
-	<node name="state_machine" pkg="exp_assignment2" type="state_machine.py" output="screen" required="true"/>
+
+  <!-- To run the finite state machine-->
+  <node name="state_machine" pkg="exp_assignment2" type="state_machine.py" output="screen" required="true"/>
 </launch>
