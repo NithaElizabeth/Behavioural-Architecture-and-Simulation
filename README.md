@@ -23,7 +23,7 @@ This component is responsible for making the green ball navigate in the modelled
 This section explains how the states are decided. As illustrated in the state diagram below, there are three states : "sleep", "normal", "play".
 ![Untitled Document (1)](https://user-images.githubusercontent.com/47361086/98930126-a0e6cd80-24f5-11eb-8624-acb703c2cd10.png)
 
-The state "sleep" is the initial state. In the "sleep" , the robot returns to its home position and rests.From the "sleep" state the robot switches to the "normal" behaviour.In the "normal" behaviour the robot moves randomly at location within its constrainted envirionment. In the "normal" behaviour, the robot will be willing to listen to the verbal commands and all the verbal commands will be registered. From the state "normal", it can switch to either "sleep" or "play".In the "play", the robot initially moves to position where the operator (person) is and then follows the operators instruction and moves to the location pointed by the operator.
+The state "sleep" is the initial state. In the "sleep" , the robot returns to its home position and rests.From the "sleep" state the robot switches to the "normal" behaviour after some time.In the "normal" behaviour the robot moves randomly at location within its constrainted envirionment. In the "normal" behaviour, the robot will be checking for the presence of a Green ball.The robot contains in movement in the world to some random positions until it detects a green ball in front of it. If the robot detects a green ball while being in the "normal" state, it switches its state to the next state, which is "play". The detections are done with the help of a camera unit mounted on top of its head. From the state "normal", it can switch to either "sleep" or "play".In the "play", the robot initially moves to position where the ball is and continue to track the movement of the ball until the ball is not visible again.If the movement of the ball is stopped, then the robot will shake its head by moving the head to right and left in 45 degrees and returning back to the center position. The robot will switch back to the "normal" state if it does not see the green ball for some time.
 ## Package and File List
 The file tree shows the various packages in this project.
 
@@ -31,34 +31,32 @@ The file tree shows the various packages in this project.
 
 The **docs** folder contains the documentations obtained from doxgen.The **index.html** contains the html documentation of all the scripts used in this project.The **launch folder** has the **launch fil**e to run the project. The scripts are all contained inside the **src folder**.
 ## Installation and Running Procedure
-Clone this github repository into the ROS workspace
+Clone this github repository into the ROS workspace src folder
 ```
-git clone https://github.com/NithaElizabeth/Behavioural-Architecture_-EXPRO-1-
+git clone https://github.com/NithaElizabeth/Behavioural-Architecture-and-Simulation-of-Robot-EXPRO2
 ```
 Next the scripts had to made executable.For that navigate to the src folder of this repositiory.
 ```
-cd Behavioural-Architecture_-EXPRO-1--master/src
+cd Behavioural-Architecture-and-Simulation-of-Robot-EXPRO2--master/src
 ```
 ```
 chmod +x state_machine.py
 ```
 ```
-chmod +x verbal_interaction.py
+chmod +x move_ball.py
 ```
 ```
-chmod +x gesture_interaction.py
+chmod +x go_to_point_robot.py
 ```
 ```
-chmod +x control.py
+chmod +x go_to_point_ball.py
 ```
-After this. in another terminal run the roscore.
+After this navigate to the launch directory from clonned folder
 ```
-roscore
+cd launch
 ```
-Once the roscore is run,then the launch file must be run.
 ```
-cd ..
-roslaunch assignment1 assignment1.launch
+roslaunch gazebo_world.launch
 ```
 ## Working Hypothesis 
 Throughout this project, it was assumed that the robot moves in discrete 2D envirionment.It implies that the position of robot at any instant will be a point with x and y coordinates only. The finite state machine was built under the hypothesis that the transition between the state will be strictly like that shown in the state diagram figure given above. It was also assumed that the position of the person will be constant for an iteration of the program. The verbal interaction node assumes that the operator commands will be of type string and will only say "play". It is also assumed that throughout the program that the robot will process only one operation at a time and all other operation that that point will be queued and only processed after the execution of the current task (if still in the same behaviour).
