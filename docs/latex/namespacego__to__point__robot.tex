@@ -1,0 +1,214 @@
+\hypertarget{namespacego__to__point__robot}{}\doxysection{go\+\_\+to\+\_\+point\+\_\+robot Namespace Reference}
+\label{namespacego__to__point__robot}\index{go\_to\_point\_robot@{go\_to\_point\_robot}}
+
+
+Implements an action server that moves the robot.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a03165218d1637827cb202d3df2d5c782}{clbk\+\_\+odom}} (msg)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a7dc82840479105130238b2bad7f4e927}{change\+\_\+state}} (state)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_ae86d8ad9123b9ac0987b894814891c0e}{normalize\+\_\+angle}} (angle)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a3a0408db6b4459c8ac5f2c39b9751b1f}{fix\+\_\+yaw}} (des\+\_\+pos)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a573823369dd4b9399d01a500104204e1}{go\+\_\+straight\+\_\+ahead}} (des\+\_\+pos)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a1895554db4ca4e026a4e08012839beaf}{done}} ()
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a06b798e382fdc93770464cbf5958726b}{planning}} (goal)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a013e23353b468ecf925a25f3ec0ad0c3}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_acbca47166b9d5f046eaeadf1287f52c4}{position\+\_\+}} = Point()
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_a9ac7f45f0d64cf9ef7666d1f825ef9ba}{pose\+\_\+}} = Pose()
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_af0544cdffc791a807b9062c979cf0c3d}{yaw\+\_\+}} = 0
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_a68762504c0683adedb89a8f7d431f475}{state\+\_\+}} = 0
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_ab42eca5c5072ff7b4d95c8e13827dba7}{desired\+\_\+position\+\_\+}} = Point()
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_ad3b22a785c833ad2cdd10712a66f11c8}{z}}
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_ad0131301589fb7d3d9462cff81932fcf}{yaw\+\_\+precision\+\_\+}} = math.\+pi / 9
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_aadcca20dfdd8e843623186e6efde0481}{yaw\+\_\+precision\+\_\+2\+\_\+}} = math.\+pi / 90
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_adce474cb3bcc2782904a1e6129217a4c}{dist\+\_\+precision\+\_\+}} = 0.\+1
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_ab9bae8b08a7c50f11e55e3fae44f7777}{kp\+\_\+a}} = 3.\+0
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_afaac446f10588cd97bfda3bf31c3b670}{kp\+\_\+d}} = 0.\+5
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_a82aa92171409b5a766ecc7ec77f1488f}{ub\+\_\+a}} = 0.\+6
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_a0a5daf54d4f98b8898f69fc331bcc1f0}{lb\+\_\+a}} = -\/0.\+5
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_aa54f25328ab1ea2787c879431057298f}{ub\+\_\+d}} = 0.\+6
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_a6e68302a4efb615222a73c01f4ea514e}{pub}} = None
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_ab19ed2eba072e150275e059ca41a4cfc}{act\+\_\+s}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements an action server that moves the robot. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacego__to__point__robot_a7dc82840479105130238b2bad7f4e927}\label{namespacego__to__point__robot_a7dc82840479105130238b2bad7f4e927}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!change\_state@{change\_state}}
+\index{change\_state@{change\_state}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{change\_state()}{change\_state()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+change\+\_\+state (\begin{DoxyParamCaption}\item[{}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a03165218d1637827cb202d3df2d5c782}\label{namespacego__to__point__robot_a03165218d1637827cb202d3df2d5c782}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!clbk\_odom@{clbk\_odom}}
+\index{clbk\_odom@{clbk\_odom}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{clbk\_odom()}{clbk\_odom()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+clbk\+\_\+odom (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a1895554db4ca4e026a4e08012839beaf}\label{namespacego__to__point__robot_a1895554db4ca4e026a4e08012839beaf}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!done@{done}}
+\index{done@{done}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{done()}{done()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a3a0408db6b4459c8ac5f2c39b9751b1f}\label{namespacego__to__point__robot_a3a0408db6b4459c8ac5f2c39b9751b1f}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!fix\_yaw@{fix\_yaw}}
+\index{fix\_yaw@{fix\_yaw}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{fix\_yaw()}{fix\_yaw()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+fix\+\_\+yaw (\begin{DoxyParamCaption}\item[{}]{des\+\_\+pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a573823369dd4b9399d01a500104204e1}\label{namespacego__to__point__robot_a573823369dd4b9399d01a500104204e1}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!go\_straight\_ahead@{go\_straight\_ahead}}
+\index{go\_straight\_ahead@{go\_straight\_ahead}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{go\_straight\_ahead()}{go\_straight\_ahead()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+go\+\_\+straight\+\_\+ahead (\begin{DoxyParamCaption}\item[{}]{des\+\_\+pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a013e23353b468ecf925a25f3ec0ad0c3}\label{namespacego__to__point__robot_a013e23353b468ecf925a25f3ec0ad0c3}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!main@{main}}
+\index{main@{main}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_ae86d8ad9123b9ac0987b894814891c0e}\label{namespacego__to__point__robot_ae86d8ad9123b9ac0987b894814891c0e}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!normalize\_angle@{normalize\_angle}}
+\index{normalize\_angle@{normalize\_angle}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{normalize\_angle()}{normalize\_angle()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+normalize\+\_\+angle (\begin{DoxyParamCaption}\item[{}]{angle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a06b798e382fdc93770464cbf5958726b}\label{namespacego__to__point__robot_a06b798e382fdc93770464cbf5958726b}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!planning@{planning}}
+\index{planning@{planning}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{planning()}{planning()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+robot.\+planning (\begin{DoxyParamCaption}\item[{}]{goal }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacego__to__point__robot_ab19ed2eba072e150275e059ca41a4cfc}\label{namespacego__to__point__robot_ab19ed2eba072e150275e059ca41a4cfc}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!act\_s@{act\_s}}
+\index{act\_s@{act\_s}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{act\_s}{act\_s}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+robot.\+act\+\_\+s = None}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_ab42eca5c5072ff7b4d95c8e13827dba7}\label{namespacego__to__point__robot_ab42eca5c5072ff7b4d95c8e13827dba7}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!desired\_position\_@{desired\_position\_}}
+\index{desired\_position\_@{desired\_position\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{desired\_position\_}{desired\_position\_}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+robot.\+desired\+\_\+position\+\_\+ = Point()}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_adce474cb3bcc2782904a1e6129217a4c}\label{namespacego__to__point__robot_adce474cb3bcc2782904a1e6129217a4c}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!dist\_precision\_@{dist\_precision\_}}
+\index{dist\_precision\_@{dist\_precision\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{dist\_precision\_}{dist\_precision\_}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+robot.\+dist\+\_\+precision\+\_\+ = 0.\+1}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_ab9bae8b08a7c50f11e55e3fae44f7777}\label{namespacego__to__point__robot_ab9bae8b08a7c50f11e55e3fae44f7777}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!kp\_a@{kp\_a}}
+\index{kp\_a@{kp\_a}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{kp\_a}{kp\_a}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+robot.\+kp\+\_\+a = 3.\+0}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_afaac446f10588cd97bfda3bf31c3b670}\label{namespacego__to__point__robot_afaac446f10588cd97bfda3bf31c3b670}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!kp\_d@{kp\_d}}
+\index{kp\_d@{kp\_d}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{kp\_d}{kp\_d}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+robot.\+kp\+\_\+d = 0.\+5}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a0a5daf54d4f98b8898f69fc331bcc1f0}\label{namespacego__to__point__robot_a0a5daf54d4f98b8898f69fc331bcc1f0}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!lb\_a@{lb\_a}}
+\index{lb\_a@{lb\_a}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{lb\_a}{lb\_a}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+robot.\+lb\+\_\+a = -\/0.\+5}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a9ac7f45f0d64cf9ef7666d1f825ef9ba}\label{namespacego__to__point__robot_a9ac7f45f0d64cf9ef7666d1f825ef9ba}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!pose\_@{pose\_}}
+\index{pose\_@{pose\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{pose\_}{pose\_}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+robot.\+pose\+\_\+ = Pose()}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_acbca47166b9d5f046eaeadf1287f52c4}\label{namespacego__to__point__robot_acbca47166b9d5f046eaeadf1287f52c4}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!position\_@{position\_}}
+\index{position\_@{position\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{position\_}{position\_}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+robot.\+position\+\_\+ = Point()}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a6e68302a4efb615222a73c01f4ea514e}\label{namespacego__to__point__robot_a6e68302a4efb615222a73c01f4ea514e}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!pub@{pub}}
+\index{pub@{pub}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{pub}{pub}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+robot.\+pub = None}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a68762504c0683adedb89a8f7d431f475}\label{namespacego__to__point__robot_a68762504c0683adedb89a8f7d431f475}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!state\_@{state\_}}
+\index{state\_@{state\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{state\_}{state\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+robot.\+state\+\_\+ = 0}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_a82aa92171409b5a766ecc7ec77f1488f}\label{namespacego__to__point__robot_a82aa92171409b5a766ecc7ec77f1488f}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!ub\_a@{ub\_a}}
+\index{ub\_a@{ub\_a}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{ub\_a}{ub\_a}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+robot.\+ub\+\_\+a = 0.\+6}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_aa54f25328ab1ea2787c879431057298f}\label{namespacego__to__point__robot_aa54f25328ab1ea2787c879431057298f}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!ub\_d@{ub\_d}}
+\index{ub\_d@{ub\_d}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{ub\_d}{ub\_d}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+robot.\+ub\+\_\+d = 0.\+6}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_af0544cdffc791a807b9062c979cf0c3d}\label{namespacego__to__point__robot_af0544cdffc791a807b9062c979cf0c3d}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!yaw\_@{yaw\_}}
+\index{yaw\_@{yaw\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{yaw\_}{yaw\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+robot.\+yaw\+\_\+ = 0}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_ad0131301589fb7d3d9462cff81932fcf}\label{namespacego__to__point__robot_ad0131301589fb7d3d9462cff81932fcf}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!yaw\_precision\_@{yaw\_precision\_}}
+\index{yaw\_precision\_@{yaw\_precision\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{yaw\_precision\_}{yaw\_precision\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+robot.\+yaw\+\_\+precision\+\_\+ = math.\+pi / 9}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_aadcca20dfdd8e843623186e6efde0481}\label{namespacego__to__point__robot_aadcca20dfdd8e843623186e6efde0481}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!yaw\_precision\_2\_@{yaw\_precision\_2\_}}
+\index{yaw\_precision\_2\_@{yaw\_precision\_2\_}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{yaw\_precision\_2\_}{yaw\_precision\_2\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+robot.\+yaw\+\_\+precision\+\_\+2\+\_\+ = math.\+pi / 90}
+
+\mbox{\Hypertarget{namespacego__to__point__robot_ad3b22a785c833ad2cdd10712a66f11c8}\label{namespacego__to__point__robot_ad3b22a785c833ad2cdd10712a66f11c8}} 
+\index{go\_to\_point\_robot@{go\_to\_point\_robot}!z@{z}}
+\index{z@{z}!go\_to\_point\_robot@{go\_to\_point\_robot}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+robot.\+z}
+

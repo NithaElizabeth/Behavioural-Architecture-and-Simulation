@@ -1,0 +1,206 @@
+\hypertarget{namespacego__to__point__ball}{}\doxysection{go\+\_\+to\+\_\+point\+\_\+ball Namespace Reference}
+\label{namespacego__to__point__ball}\index{go\_to\_point\_ball@{go\_to\_point\_ball}}
+
+
+Implements an action server that moves the ball.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacego__to__point__ball_a8b53c165c87e66822f50ab5daebc14dc}{clbk\+\_\+odom}} (msg)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__ball_ac5839fd3601d15749a1e1a28939b2c68}{change\+\_\+state}} (state)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__ball_aecbf76a67251ff6a3a0840bb61e1c581}{go\+\_\+straight\+\_\+ahead}} (des\+\_\+pos)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__ball_ab92c8b4240f09ff0b5d960c748ade799}{done}} ()
+\item 
+def \mbox{\hyperlink{namespacego__to__point__ball_ab0e05a6be4adc81f80b5635d9bd692d1}{planning}} (goal)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__ball_a4d4c016b6bb12c612710a2d39ade3465}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacego__to__point__ball_aa399e57145dd0af7eefcd5fab4174fe9}{position\+\_\+}} = Point()
+\item 
+\mbox{\hyperlink{namespacego__to__point__ball_a03f1d8b257a2ae3d173a18c3fc2f8602}{pose\+\_\+}} = Pose()
+\item 
+int \mbox{\hyperlink{namespacego__to__point__ball_a74d8ca28c507d35baf1ea8e8f9595a78}{yaw\+\_\+}} = 0
+\item 
+int \mbox{\hyperlink{namespacego__to__point__ball_a0028df70b94b4041119cceba5e5aa79d}{state\+\_\+}} = 0
+\item 
+\mbox{\hyperlink{namespacego__to__point__ball_ac81a8393fb253c9e0b7255f779f16884}{desired\+\_\+position\+\_\+}} = Point()
+\item 
+int \mbox{\hyperlink{namespacego__to__point__ball_acc228d72c1ee47a43061e3563ac20d5c}{yaw\+\_\+precision\+\_\+}} = math.\+pi / 9
+\item 
+int \mbox{\hyperlink{namespacego__to__point__ball_a1985c69cf8534ba0bd2c6080f788a992}{yaw\+\_\+precision\+\_\+2\+\_\+}} = math.\+pi / 90
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_a9a02c8ca89a09909111972ec4fd317ca}{dist\+\_\+precision\+\_\+}} = 0.\+1
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_aac67ecb6c41141092b1ccaba4b537afc}{kp\+\_\+a}} = 3.\+0
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_aeb49969b88b7ca77d9abdeae42cb1964}{kp\+\_\+d}} = 0.\+5
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_aa5173a26f3502ea035d7c563bbf1fb05}{ub\+\_\+a}} = 0.\+6
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_ae6440cb2a8ea6e8e7d2327cb4cd12dd3}{lb\+\_\+a}} = -\/0.\+5
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_a1dabe6f24f898fa6f5303959917de757}{ub\+\_\+d}} = 2.\+0
+\item 
+float \mbox{\hyperlink{namespacego__to__point__ball_a176944c73499ce72fa754c7e1a6d138d}{z\+\_\+back}} = 0.\+25
+\item 
+\mbox{\hyperlink{namespacego__to__point__ball_a00b95c7141b558cd4466ca89d7c81640}{pub}} = None
+\item 
+\mbox{\hyperlink{namespacego__to__point__ball_ae3016b9645d9bd2b863a34a30115a6af}{pubz}} = None
+\item 
+\mbox{\hyperlink{namespacego__to__point__ball_a9ac8c67ea55b320e5eb2bdf665173ffa}{act\+\_\+s}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements an action server that moves the ball. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacego__to__point__ball_ac5839fd3601d15749a1e1a28939b2c68}\label{namespacego__to__point__ball_ac5839fd3601d15749a1e1a28939b2c68}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!change\_state@{change\_state}}
+\index{change\_state@{change\_state}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{change\_state()}{change\_state()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+ball.\+change\+\_\+state (\begin{DoxyParamCaption}\item[{}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a8b53c165c87e66822f50ab5daebc14dc}\label{namespacego__to__point__ball_a8b53c165c87e66822f50ab5daebc14dc}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!clbk\_odom@{clbk\_odom}}
+\index{clbk\_odom@{clbk\_odom}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{clbk\_odom()}{clbk\_odom()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+ball.\+clbk\+\_\+odom (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_ab92c8b4240f09ff0b5d960c748ade799}\label{namespacego__to__point__ball_ab92c8b4240f09ff0b5d960c748ade799}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!done@{done}}
+\index{done@{done}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{done()}{done()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+ball.\+done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_aecbf76a67251ff6a3a0840bb61e1c581}\label{namespacego__to__point__ball_aecbf76a67251ff6a3a0840bb61e1c581}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!go\_straight\_ahead@{go\_straight\_ahead}}
+\index{go\_straight\_ahead@{go\_straight\_ahead}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{go\_straight\_ahead()}{go\_straight\_ahead()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+ball.\+go\+\_\+straight\+\_\+ahead (\begin{DoxyParamCaption}\item[{}]{des\+\_\+pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a4d4c016b6bb12c612710a2d39ade3465}\label{namespacego__to__point__ball_a4d4c016b6bb12c612710a2d39ade3465}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!main@{main}}
+\index{main@{main}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+ball.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_ab0e05a6be4adc81f80b5635d9bd692d1}\label{namespacego__to__point__ball_ab0e05a6be4adc81f80b5635d9bd692d1}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!planning@{planning}}
+\index{planning@{planning}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{planning()}{planning()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point\+\_\+ball.\+planning (\begin{DoxyParamCaption}\item[{}]{goal }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacego__to__point__ball_a9ac8c67ea55b320e5eb2bdf665173ffa}\label{namespacego__to__point__ball_a9ac8c67ea55b320e5eb2bdf665173ffa}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!act\_s@{act\_s}}
+\index{act\_s@{act\_s}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{act\_s}{act\_s}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+ball.\+act\+\_\+s = None}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_ac81a8393fb253c9e0b7255f779f16884}\label{namespacego__to__point__ball_ac81a8393fb253c9e0b7255f779f16884}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!desired\_position\_@{desired\_position\_}}
+\index{desired\_position\_@{desired\_position\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{desired\_position\_}{desired\_position\_}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+ball.\+desired\+\_\+position\+\_\+ = Point()}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a9a02c8ca89a09909111972ec4fd317ca}\label{namespacego__to__point__ball_a9a02c8ca89a09909111972ec4fd317ca}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!dist\_precision\_@{dist\_precision\_}}
+\index{dist\_precision\_@{dist\_precision\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{dist\_precision\_}{dist\_precision\_}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+dist\+\_\+precision\+\_\+ = 0.\+1}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_aac67ecb6c41141092b1ccaba4b537afc}\label{namespacego__to__point__ball_aac67ecb6c41141092b1ccaba4b537afc}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!kp\_a@{kp\_a}}
+\index{kp\_a@{kp\_a}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{kp\_a}{kp\_a}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+kp\+\_\+a = 3.\+0}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_aeb49969b88b7ca77d9abdeae42cb1964}\label{namespacego__to__point__ball_aeb49969b88b7ca77d9abdeae42cb1964}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!kp\_d@{kp\_d}}
+\index{kp\_d@{kp\_d}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{kp\_d}{kp\_d}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+kp\+\_\+d = 0.\+5}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_ae6440cb2a8ea6e8e7d2327cb4cd12dd3}\label{namespacego__to__point__ball_ae6440cb2a8ea6e8e7d2327cb4cd12dd3}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!lb\_a@{lb\_a}}
+\index{lb\_a@{lb\_a}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{lb\_a}{lb\_a}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+lb\+\_\+a = -\/0.\+5}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a03f1d8b257a2ae3d173a18c3fc2f8602}\label{namespacego__to__point__ball_a03f1d8b257a2ae3d173a18c3fc2f8602}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!pose\_@{pose\_}}
+\index{pose\_@{pose\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{pose\_}{pose\_}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+ball.\+pose\+\_\+ = Pose()}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_aa399e57145dd0af7eefcd5fab4174fe9}\label{namespacego__to__point__ball_aa399e57145dd0af7eefcd5fab4174fe9}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!position\_@{position\_}}
+\index{position\_@{position\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{position\_}{position\_}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+ball.\+position\+\_\+ = Point()}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a00b95c7141b558cd4466ca89d7c81640}\label{namespacego__to__point__ball_a00b95c7141b558cd4466ca89d7c81640}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!pub@{pub}}
+\index{pub@{pub}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{pub}{pub}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+ball.\+pub = None}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_ae3016b9645d9bd2b863a34a30115a6af}\label{namespacego__to__point__ball_ae3016b9645d9bd2b863a34a30115a6af}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!pubz@{pubz}}
+\index{pubz@{pubz}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{pubz}{pubz}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point\+\_\+ball.\+pubz = None}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a0028df70b94b4041119cceba5e5aa79d}\label{namespacego__to__point__ball_a0028df70b94b4041119cceba5e5aa79d}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!state\_@{state\_}}
+\index{state\_@{state\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{state\_}{state\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+ball.\+state\+\_\+ = 0}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_aa5173a26f3502ea035d7c563bbf1fb05}\label{namespacego__to__point__ball_aa5173a26f3502ea035d7c563bbf1fb05}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!ub\_a@{ub\_a}}
+\index{ub\_a@{ub\_a}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{ub\_a}{ub\_a}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+ub\+\_\+a = 0.\+6}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a1dabe6f24f898fa6f5303959917de757}\label{namespacego__to__point__ball_a1dabe6f24f898fa6f5303959917de757}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!ub\_d@{ub\_d}}
+\index{ub\_d@{ub\_d}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{ub\_d}{ub\_d}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+ub\+\_\+d = 2.\+0}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a74d8ca28c507d35baf1ea8e8f9595a78}\label{namespacego__to__point__ball_a74d8ca28c507d35baf1ea8e8f9595a78}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!yaw\_@{yaw\_}}
+\index{yaw\_@{yaw\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{yaw\_}{yaw\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+ball.\+yaw\+\_\+ = 0}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_acc228d72c1ee47a43061e3563ac20d5c}\label{namespacego__to__point__ball_acc228d72c1ee47a43061e3563ac20d5c}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!yaw\_precision\_@{yaw\_precision\_}}
+\index{yaw\_precision\_@{yaw\_precision\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{yaw\_precision\_}{yaw\_precision\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+ball.\+yaw\+\_\+precision\+\_\+ = math.\+pi / 9}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a1985c69cf8534ba0bd2c6080f788a992}\label{namespacego__to__point__ball_a1985c69cf8534ba0bd2c6080f788a992}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!yaw\_precision\_2\_@{yaw\_precision\_2\_}}
+\index{yaw\_precision\_2\_@{yaw\_precision\_2\_}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{yaw\_precision\_2\_}{yaw\_precision\_2\_}}
+{\footnotesize\ttfamily int go\+\_\+to\+\_\+point\+\_\+ball.\+yaw\+\_\+precision\+\_\+2\+\_\+ = math.\+pi / 90}
+
+\mbox{\Hypertarget{namespacego__to__point__ball_a176944c73499ce72fa754c7e1a6d138d}\label{namespacego__to__point__ball_a176944c73499ce72fa754c7e1a6d138d}} 
+\index{go\_to\_point\_ball@{go\_to\_point\_ball}!z\_back@{z\_back}}
+\index{z\_back@{z\_back}!go\_to\_point\_ball@{go\_to\_point\_ball}}
+\doxysubsubsection{\texorpdfstring{z\_back}{z\_back}}
+{\footnotesize\ttfamily float go\+\_\+to\+\_\+point\+\_\+ball.\+z\+\_\+back = 0.\+25}
+

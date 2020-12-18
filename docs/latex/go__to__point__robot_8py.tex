@@ -1,0 +1,61 @@
+\hypertarget{go__to__point__robot_8py}{}\doxysection{scripts/go\+\_\+to\+\_\+point\+\_\+robot.py File Reference}
+\label{go__to__point__robot_8py}\index{scripts/go\_to\_point\_robot.py@{scripts/go\_to\_point\_robot.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacego__to__point__robot}{go\+\_\+to\+\_\+point\+\_\+robot}}
+\begin{DoxyCompactList}\small\item\em Implements an action server that moves the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a03165218d1637827cb202d3df2d5c782}{go\+\_\+to\+\_\+point\+\_\+robot.\+clbk\+\_\+odom}} (msg)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a7dc82840479105130238b2bad7f4e927}{go\+\_\+to\+\_\+point\+\_\+robot.\+change\+\_\+state}} (state)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_ae86d8ad9123b9ac0987b894814891c0e}{go\+\_\+to\+\_\+point\+\_\+robot.\+normalize\+\_\+angle}} (angle)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a3a0408db6b4459c8ac5f2c39b9751b1f}{go\+\_\+to\+\_\+point\+\_\+robot.\+fix\+\_\+yaw}} (des\+\_\+pos)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a573823369dd4b9399d01a500104204e1}{go\+\_\+to\+\_\+point\+\_\+robot.\+go\+\_\+straight\+\_\+ahead}} (des\+\_\+pos)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a1895554db4ca4e026a4e08012839beaf}{go\+\_\+to\+\_\+point\+\_\+robot.\+done}} ()
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a06b798e382fdc93770464cbf5958726b}{go\+\_\+to\+\_\+point\+\_\+robot.\+planning}} (goal)
+\item 
+def \mbox{\hyperlink{namespacego__to__point__robot_a013e23353b468ecf925a25f3ec0ad0c3}{go\+\_\+to\+\_\+point\+\_\+robot.\+main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_acbca47166b9d5f046eaeadf1287f52c4}{go\+\_\+to\+\_\+point\+\_\+robot.\+position\+\_\+}} = Point()
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_a9ac7f45f0d64cf9ef7666d1f825ef9ba}{go\+\_\+to\+\_\+point\+\_\+robot.\+pose\+\_\+}} = Pose()
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_af0544cdffc791a807b9062c979cf0c3d}{go\+\_\+to\+\_\+point\+\_\+robot.\+yaw\+\_\+}} = 0
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_a68762504c0683adedb89a8f7d431f475}{go\+\_\+to\+\_\+point\+\_\+robot.\+state\+\_\+}} = 0
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_ab42eca5c5072ff7b4d95c8e13827dba7}{go\+\_\+to\+\_\+point\+\_\+robot.\+desired\+\_\+position\+\_\+}} = Point()
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_ad3b22a785c833ad2cdd10712a66f11c8}{go\+\_\+to\+\_\+point\+\_\+robot.\+z}}
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_ad0131301589fb7d3d9462cff81932fcf}{go\+\_\+to\+\_\+point\+\_\+robot.\+yaw\+\_\+precision\+\_\+}} = math.\+pi / 9
+\item 
+int \mbox{\hyperlink{namespacego__to__point__robot_aadcca20dfdd8e843623186e6efde0481}{go\+\_\+to\+\_\+point\+\_\+robot.\+yaw\+\_\+precision\+\_\+2\+\_\+}} = math.\+pi / 90
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_adce474cb3bcc2782904a1e6129217a4c}{go\+\_\+to\+\_\+point\+\_\+robot.\+dist\+\_\+precision\+\_\+}} = 0.\+1
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_ab9bae8b08a7c50f11e55e3fae44f7777}{go\+\_\+to\+\_\+point\+\_\+robot.\+kp\+\_\+a}} = 3.\+0
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_afaac446f10588cd97bfda3bf31c3b670}{go\+\_\+to\+\_\+point\+\_\+robot.\+kp\+\_\+d}} = 0.\+5
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_a82aa92171409b5a766ecc7ec77f1488f}{go\+\_\+to\+\_\+point\+\_\+robot.\+ub\+\_\+a}} = 0.\+6
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_a0a5daf54d4f98b8898f69fc331bcc1f0}{go\+\_\+to\+\_\+point\+\_\+robot.\+lb\+\_\+a}} = -\/0.\+5
+\item 
+float \mbox{\hyperlink{namespacego__to__point__robot_aa54f25328ab1ea2787c879431057298f}{go\+\_\+to\+\_\+point\+\_\+robot.\+ub\+\_\+d}} = 0.\+6
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_a6e68302a4efb615222a73c01f4ea514e}{go\+\_\+to\+\_\+point\+\_\+robot.\+pub}} = None
+\item 
+\mbox{\hyperlink{namespacego__to__point__robot_ab19ed2eba072e150275e059ca41a4cfc}{go\+\_\+to\+\_\+point\+\_\+robot.\+act\+\_\+s}} = None
+\end{DoxyCompactItemize}

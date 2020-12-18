@@ -1,0 +1,177 @@
+\hypertarget{namespacestate__machine}{}\doxysection{state\+\_\+machine Namespace Reference}
+\label{namespacestate__machine}\index{state\_machine@{state\_machine}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classstate__machine_1_1_normal}{Normal}}
+\item 
+class \mbox{\hyperlink{classstate__machine_1_1_play}{Play}}
+\item 
+class \mbox{\hyperlink{classstate__machine_1_1_sleep}{Sleep}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacestate__machine_aaa830df6bb831c9f29b06477da34afc0}{move\+\_\+robot}} (location)
+\item 
+def \mbox{\hyperlink{namespacestate__machine_a02a4ecaec0a306e4271c95d529d12838}{search\+\_\+ball}} (self, ros\+\_\+data)
+\item 
+def \mbox{\hyperlink{namespacestate__machine_abf9a35f5523a544e9067c2ad8b383a5f}{follow\+\_\+ball}} (ros\+\_\+data)
+\item 
+def \mbox{\hyperlink{namespacestate__machine_afaa99f0eebff6571a958fcc827c6a367}{user\+\_\+action}} ()
+\item 
+def \mbox{\hyperlink{namespacestate__machine_a5c680ce705e6052fa07c6cece21743d0}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacestate__machine_a8b1913f94c64745cffa6fd2062e38f74}{V\+E\+R\+B\+O\+SE}} = False
+\item 
+int \mbox{\hyperlink{namespacestate__machine_a29fcef47f013fcdedf30d6278760884f}{x\+\_\+lim}} = 7
+\item 
+int \mbox{\hyperlink{namespacestate__machine_af0cdb7a708b2f011c85f404bdfb024e8}{y\+\_\+lim}} = 7
+\item 
+\mbox{\hyperlink{namespacestate__machine_ae4121b8fe8a803eee99692751883ebd7}{client\+\_\+action}} = None
+\item 
+\mbox{\hyperlink{namespacestate__machine_aa8bd1ef36a1404dde939b9bc6eb3769d}{pos}} = Pose\+Stamped()
+\item 
+bool \mbox{\hyperlink{namespacestate__machine_ab44e441bd75026acccc986bd571ccd7d}{is\+\_\+ball\+\_\+found}} = False
+\item 
+\mbox{\hyperlink{namespacestate__machine_a5c2439432ee3c625a3eccf1483adbfdc}{camera\+\_\+sub}} = None
+\item 
+int \mbox{\hyperlink{namespacestate__machine_a5b5679ca0e1253306c5764103a522e21}{counter\+\_\+time}} = 0
+\item 
+bool \mbox{\hyperlink{namespacestate__machine_a89677823404aeb8867ee6b7c80a7485e}{is\+\_\+robot\+\_\+stopped}} = False
+\item 
+\mbox{\hyperlink{namespacestate__machine_ad2ec11abf9904d7501d1f266a1caa941}{velocity\+\_\+pub}} = None
+\item 
+\mbox{\hyperlink{namespacestate__machine_a93e2e456c9f84b7b89206e0a21fa3617}{headangle\+\_\+pub}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This is the state machine that switches between the three states
+
+This node is a satate machine that is implemented in position of command
+manager in the whole architecture.This state machine is implemented in 
+smach.It switches between three nodes sleep, normal and play. 
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacestate__machine_abf9a35f5523a544e9067c2ad8b383a5f}\label{namespacestate__machine_abf9a35f5523a544e9067c2ad8b383a5f}} 
+\index{state\_machine@{state\_machine}!follow\_ball@{follow\_ball}}
+\index{follow\_ball@{follow\_ball}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{follow\_ball()}{follow\_ball()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+follow\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{ros\+\_\+data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function is used by the Play state to detect and track the ball and returns is_robot_stopped TRUE if a ball is stopped and Robot stops the movement\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacestate__machine_a5c680ce705e6052fa07c6cece21743d0}\label{namespacestate__machine_a5c680ce705e6052fa07c6cece21743d0}} 
+\index{state\_machine@{state\_machine}!main@{main}}
+\index{main@{main}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This class is the main class
+    
+This class defines the relation of each state parameters to corresponding 
+states.From the sleep state , the robot moves to Normal state.From the 
+normal state the robot can move to either Sleep state or PLay state.And 
+from the Play state the robot moves back to normal state.\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacestate__machine_aaa830df6bb831c9f29b06477da34afc0}\label{namespacestate__machine_aaa830df6bb831c9f29b06477da34afc0}} 
+\index{state\_machine@{state\_machine}!move\_robot@{move\_robot}}
+\index{move\_robot@{move\_robot}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{move\_robot()}{move\_robot()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+move\+\_\+robot (\begin{DoxyParamCaption}\item[{}]{location }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This funciThis function is used to move the Robot to the prescribed position through the Action servers
+
+Attributes
+----------
+client_action
+        A global variable for action srver for the goal position 
+    goal
+        Contains the target position\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacestate__machine_a02a4ecaec0a306e4271c95d529d12838}\label{namespacestate__machine_a02a4ecaec0a306e4271c95d529d12838}} 
+\index{state\_machine@{state\_machine}!search\_ball@{search\_ball}}
+\index{search\_ball@{search\_ball}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{search\_ball()}{search\_ball()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+search\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ros\+\_\+data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function is used by NORMAL state to look if a ball and returns is_ball_faound TRUE if ball is visible \end{DoxyVerb}
+ \mbox{\Hypertarget{namespacestate__machine_afaa99f0eebff6571a958fcc827c6a367}\label{namespacestate__machine_afaa99f0eebff6571a958fcc827c6a367}} 
+\index{state\_machine@{state\_machine}!user\_action@{user\_action}}
+\index{user\_action@{user\_action}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{user\_action()}{user\_action()}}
+{\footnotesize\ttfamily def state\+\_\+machine.\+user\+\_\+action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function choses randomly a state from the 3 states:"sleep","normal","play" \end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacestate__machine_a5c2439432ee3c625a3eccf1483adbfdc}\label{namespacestate__machine_a5c2439432ee3c625a3eccf1483adbfdc}} 
+\index{state\_machine@{state\_machine}!camera\_sub@{camera\_sub}}
+\index{camera\_sub@{camera\_sub}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{camera\_sub}{camera\_sub}}
+{\footnotesize\ttfamily state\+\_\+machine.\+camera\+\_\+sub = None}
+
+\mbox{\Hypertarget{namespacestate__machine_ae4121b8fe8a803eee99692751883ebd7}\label{namespacestate__machine_ae4121b8fe8a803eee99692751883ebd7}} 
+\index{state\_machine@{state\_machine}!client\_action@{client\_action}}
+\index{client\_action@{client\_action}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{client\_action}{client\_action}}
+{\footnotesize\ttfamily state\+\_\+machine.\+client\+\_\+action = None}
+
+\mbox{\Hypertarget{namespacestate__machine_a5b5679ca0e1253306c5764103a522e21}\label{namespacestate__machine_a5b5679ca0e1253306c5764103a522e21}} 
+\index{state\_machine@{state\_machine}!counter\_time@{counter\_time}}
+\index{counter\_time@{counter\_time}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{counter\_time}{counter\_time}}
+{\footnotesize\ttfamily int state\+\_\+machine.\+counter\+\_\+time = 0}
+
+\mbox{\Hypertarget{namespacestate__machine_a93e2e456c9f84b7b89206e0a21fa3617}\label{namespacestate__machine_a93e2e456c9f84b7b89206e0a21fa3617}} 
+\index{state\_machine@{state\_machine}!headangle\_pub@{headangle\_pub}}
+\index{headangle\_pub@{headangle\_pub}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{headangle\_pub}{headangle\_pub}}
+{\footnotesize\ttfamily state\+\_\+machine.\+headangle\+\_\+pub = None}
+
+\mbox{\Hypertarget{namespacestate__machine_ab44e441bd75026acccc986bd571ccd7d}\label{namespacestate__machine_ab44e441bd75026acccc986bd571ccd7d}} 
+\index{state\_machine@{state\_machine}!is\_ball\_found@{is\_ball\_found}}
+\index{is\_ball\_found@{is\_ball\_found}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{is\_ball\_found}{is\_ball\_found}}
+{\footnotesize\ttfamily bool state\+\_\+machine.\+is\+\_\+ball\+\_\+found = False}
+
+\mbox{\Hypertarget{namespacestate__machine_a89677823404aeb8867ee6b7c80a7485e}\label{namespacestate__machine_a89677823404aeb8867ee6b7c80a7485e}} 
+\index{state\_machine@{state\_machine}!is\_robot\_stopped@{is\_robot\_stopped}}
+\index{is\_robot\_stopped@{is\_robot\_stopped}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{is\_robot\_stopped}{is\_robot\_stopped}}
+{\footnotesize\ttfamily bool state\+\_\+machine.\+is\+\_\+robot\+\_\+stopped = False}
+
+\mbox{\Hypertarget{namespacestate__machine_aa8bd1ef36a1404dde939b9bc6eb3769d}\label{namespacestate__machine_aa8bd1ef36a1404dde939b9bc6eb3769d}} 
+\index{state\_machine@{state\_machine}!pos@{pos}}
+\index{pos@{pos}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily state\+\_\+machine.\+pos = Pose\+Stamped()}
+
+\mbox{\Hypertarget{namespacestate__machine_ad2ec11abf9904d7501d1f266a1caa941}\label{namespacestate__machine_ad2ec11abf9904d7501d1f266a1caa941}} 
+\index{state\_machine@{state\_machine}!velocity\_pub@{velocity\_pub}}
+\index{velocity\_pub@{velocity\_pub}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{velocity\_pub}{velocity\_pub}}
+{\footnotesize\ttfamily state\+\_\+machine.\+velocity\+\_\+pub = None}
+
+\mbox{\Hypertarget{namespacestate__machine_a8b1913f94c64745cffa6fd2062e38f74}\label{namespacestate__machine_a8b1913f94c64745cffa6fd2062e38f74}} 
+\index{state\_machine@{state\_machine}!VERBOSE@{VERBOSE}}
+\index{VERBOSE@{VERBOSE}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{VERBOSE}{VERBOSE}}
+{\footnotesize\ttfamily bool state\+\_\+machine.\+V\+E\+R\+B\+O\+SE = False}
+
+\mbox{\Hypertarget{namespacestate__machine_a29fcef47f013fcdedf30d6278760884f}\label{namespacestate__machine_a29fcef47f013fcdedf30d6278760884f}} 
+\index{state\_machine@{state\_machine}!x\_lim@{x\_lim}}
+\index{x\_lim@{x\_lim}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{x\_lim}{x\_lim}}
+{\footnotesize\ttfamily int state\+\_\+machine.\+x\+\_\+lim = 7}
+
+\mbox{\Hypertarget{namespacestate__machine_af0cdb7a708b2f011c85f404bdfb024e8}\label{namespacestate__machine_af0cdb7a708b2f011c85f404bdfb024e8}} 
+\index{state\_machine@{state\_machine}!y\_lim@{y\_lim}}
+\index{y\_lim@{y\_lim}!state\_machine@{state\_machine}}
+\doxysubsubsection{\texorpdfstring{y\_lim}{y\_lim}}
+{\footnotesize\ttfamily int state\+\_\+machine.\+y\+\_\+lim = 7}
+
