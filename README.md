@@ -1,28 +1,29 @@
 # Experimental Robotics Laboratory - Assignment 2
 #### Behavioural Architecture and its Simulations
 ## Intoduction
-This repository contains the Assignment 2 of Experimental Robotics Lab.The aim of this assignment is to implement a behavioural architecure for a robot that moves in a discrete 2D envirionment.The architecture involves nodes for changing the location of the ball, a finite state machine as the command manager and components for changing the position of the Robot and Ball to the desired goal locations.\
+This repository contains the Assignment 2 of Experimental Robotics Lab.The aim of this assignment is to implement a model based simulation for the behavioural architecure's state machine that was completed as assignment 1, for a pet (dog-like) robot that moves in a discrete 2D envirionment.The architecture involves nodes for changing the location of the ball, a finite state machine as the command manager and components for changing the position of the Robot and Ball to the desired goal locations.\
 The project was developed on ROS-kinetic and Python and state machine is implemented on Smach. 
 ## Software Architecture
 ![expro_arch2](https://user-images.githubusercontent.com/47361086/98937966-9ed63c00-2500-11eb-920e-5707efc8079d.PNG)
 The picture above is the component diagram of the implemented system.The major components of the system are :
-* Verbal Interaction
-* Gesture Interaction
 * State Machine
-* Control
-#### Verbal Interaction Component
-This component is responsible for obtaining the verbal orders from the operator(person).This is used to receive the voice commands of the person and then to process it . Once processed, it will be passed on to the state machine to initiate the corresponding behavior. In this project, it is assumed that the operator says a command of type string (eg. "play" ) and it is processed and send to to the state machine.
-#### Gesture Interaction
-This component is responsible for obtaining the gestures from the operator(person). This components will recieve the cordinates of the location pointed by the operator and it is published to the state machine so that if the robot is in state "play" it should move the location pointed by the operator.
+* Move_Ball
+* Go to point -Robot
+* Go to point -Ball
 #### State Machine
-This acts as the command manager.It switches between three states i.e. "sleep", "normal", "play". "Sleep" being the initial state, the robot rest in its home location. At "normal" state, the robot wanders randomly throughout the envirionment. In the "play" state , the robot moves to the location of the operator and then follows the operators gestures and move toward the position pointed by the operator.
-#### Control
-This component is responsible for the robot motion and control. After obtaining the location or commands from the previous components, the robot moves to that position respectively.This component also publishes its current location via topic /position.
+This acts as the command manager.It switches between three states i.e. "sleep", "normal", "play". "Sleep" being the initial state, the robot rest in its home location. At "normal" state, the robot wanders randomly throughout the envirionment until it sees a green ball. On detecting the green ball, the robot changes its state to "play". In the "play" state , the robot moves to the location of the ball and then follows the green ball until stops.
+#### The Move Ball Component
+This component is responsible for giving pos for moving and changing the position and mode of the Green ball used in this simulation.This node assumes that the operators(user operating this robot) gives one out of two commands : MOVE , DISAPPEAR at a time. Hence it randomly chooses either MOVE or Disappear as user command. Based on this user command the ball navigates and changes its position. If the user command is MOVE, the ball moves to some random position and if the user command DISAPPEAR , the ball will no longer be seen on the 2D world. In this node, the action client uses the ball/reaching_goal topic to move the ball.
+#### Go to point -Robot
+This component is responsible for making the pet robot navigate in the modelled world based on the pos(target position) it receives.
+#### Go to point -Ball
+This component is responsible for making the green ball navigate in the modelled world based on the pos(target position) it receives.
+
 ## State Diagram
 This section explains how the states are decided. As illustrated in the state diagram below, there are three states : "sleep", "normal", "play".
 ![Untitled Document (1)](https://user-images.githubusercontent.com/47361086/98930126-a0e6cd80-24f5-11eb-8624-acb703c2cd10.png)
 
-The state "sleep" is the initial state. In the "sleep" , the robot returns to its home position and rests.From the "sleep" state the robot switches to the "normal" behaviour.In the "normal" behaviour the robot moves randomly at location within its constrainted envirionment. In the "normal" behaviour, the robot will be willing to listen to the verbal commands and all the verbal commands will be registered. From the state "normal", it can switch to either "sleep" or "play".In the "play", the robot initially moves to position where the operator (person) is and then follows the operators instruction and moves to the location pointed by the operator.
+The state "sleep" is the initial state. In the "sleep" , the robot returns to its home position and rests.From the "sleep" state the robot switches to the "normal" behaviour after some time.In the "normal" behaviour the robot moves randomly at location within its constrainted envirionment. In the "normal" behaviour, the robot will be checking for the presence of a Green ball.The robot contains in movement in the world to some random positions until it detects a green ball in front of it. If the robot detects a green ball while being in the "normal" state, it switches its state to the next state, which is "play". The detections are done with the help of a camera unit mounted on top of its head. From the state "normal", it can switch to either "sleep" or "play".In the "play", the robot initially moves to position where the ball is and continue to track the movement of the ball until the ball is not visible again.If the movement of the ball is stopped, then the robot will shake its head by moving the head to right and left in 45 degrees and returning back to the center position. The robot will switch back to the "normal" state if it does not see the green ball for some time.
 ## Package and File List
 The file tree shows the various packages in this project.
 
@@ -30,34 +31,32 @@ The file tree shows the various packages in this project.
 
 The **docs** folder contains the documentations obtained from doxgen.The **index.html** contains the html documentation of all the scripts used in this project.The **launch folder** has the **launch fil**e to run the project. The scripts are all contained inside the **src folder**.
 ## Installation and Running Procedure
-Clone this github repository into the ROS workspace
+Clone this github repository into the ROS workspace src folder
 ```
-git clone https://github.com/NithaElizabeth/Behavioural-Architecture_-EXPRO-1-
+git clone https://github.com/NithaElizabeth/Behavioural-Architecture-and-Simulation-of-Robot-EXPRO2
 ```
 Next the scripts had to made executable.For that navigate to the src folder of this repositiory.
 ```
-cd Behavioural-Architecture_-EXPRO-1--master/src
+cd Behavioural-Architecture-and-Simulation-of-Robot-EXPRO2--master/src
 ```
 ```
 chmod +x state_machine.py
 ```
 ```
-chmod +x verbal_interaction.py
+chmod +x move_ball.py
 ```
 ```
-chmod +x gesture_interaction.py
+chmod +x go_to_point_robot.py
 ```
 ```
-chmod +x control.py
+chmod +x go_to_point_ball.py
 ```
-After this. in another terminal run the roscore.
+After this navigate to the launch directory from clonned folder
 ```
-roscore
+cd launch
 ```
-Once the roscore is run,then the launch file must be run.
 ```
-cd ..
-roslaunch assignment1 assignment1.launch
+roslaunch gazebo_world.launch
 ```
 ## Working Hypothesis 
 Throughout this project, it was assumed that the robot moves in discrete 2D envirionment.It implies that the position of robot at any instant will be a point with x and y coordinates only. The finite state machine was built under the hypothesis that the transition between the state will be strictly like that shown in the state diagram figure given above. It was also assumed that the position of the person will be constant for an iteration of the program. The verbal interaction node assumes that the operator commands will be of type string and will only say "play". It is also assumed that throughout the program that the robot will process only one operation at a time and all other operation that that point will be queued and only processed after the execution of the current task (if still in the same behaviour).
