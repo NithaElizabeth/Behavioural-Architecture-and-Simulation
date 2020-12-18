@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+"""This is implemented to move the ball using commands. 
 
-## @package person
-# Mimics the behaviour of a person controlling the robot.
-# The person can move the ball to a certain goal position or can make 
-# it disappear.
+The ball disapears when the user command becomes DISAPPEAR and the ball 
+moves to some random position when the user command becomes MOVE. 
+""" 
 
+
+"""Imports the neccessary libraries and headers"""
 import rospy
 import time
 import random
@@ -12,58 +14,78 @@ import actionlib
 from geometry_msgs.msg import PoseStamped
 import exp_assignment2.msg
 
-# Action client
+"""This is a variable used to describe the action client """
 client_action = None
 
-# Goal pose
-new_pos = Pose()
+"""The desired position is fed to this variable """
+pos = PoseStamped()
 
-##
-# Sends a goal to the ball's action server to move it to a random 
-# position. After the ball has reached the destination the person
-# wait some time before issuing another command.
-def move_ball_position():
 
-	global client_action
-    x = random.randint(-7, 0)
-    y = random.randint(0, 7)
-	condition = random.randint(-1, 1)
-	if condition > 0 :
-		new_pos.pose.position.x = x
-		new_pos.pose.position.y = y
-		new_pos.pose.position.z = 0.01
-	else :
-		new_pos.pose.position.x = x
-		new_pos.pose.position.y = y
-		new_pos.pose.position.z = -1
+def user_command():
+    """The funcction is used to randomly select the user command from  the choices MOVE and DISAPPEAR """
+    ## random choice between search for the ball or go to sleep 
+    return random.choice(['move','disappear'])
 
-    # Create the goal
-    goal = exp_assignment2.msg.PlanningGoal()
-    goal.target_pose = new_pos
+# Randomly perfoms one of the two available commands.
+def change_ball_position():
+    """This function is used to change the ball's position from its current location based on the user commads received from user_command()"""
+	
+    
+    while not rospy.is_shutdown():
 
-    # Print a feedback message
-    print("\n The ball moves to the new location :  [%d, %d].\n" %(x, y))
+        """To call the function for receiving the commands """
+        command= user_command()
 
-    # Send the goal
-    client_action.send_goal(goal)
+        if command=='move':
+            
+            print("\nCommand given for the ball : MOVE ")
+            x = random.randint(-7, 0)
+            y = random.randint(0,7)
+            pos.pose.position.x = x
+            pos.pose.position.y = y
+            pos.pose.position.z = 0.20
+            """ Create the goal position"""
+            goal = exp_assignment2.msg.PlanningGoal()
+            goal.target_pose= pos
+            print("\nThe ball is now at position [%d, %d].\n" %(x, y))
+            """ Send the goal """
+            client_action.send_goal(goal)
+            # Wait until the ball has reached the destination
+            client_action.wait_for_result()
+            time.sleep(20)
+        elif command=='disappear':
+			print( "\nCommand given for the ball : DISAPPEAR ")
+			#disappearBall()
+			pos.pose.position.x = 0
+			pos.pose.position.y = 0
+			pos.pose.position.z = -1
+			""" Create the goal position"""
+			goal = exp_assignment2.msg.PlanningGoal()
+			goal.target_pose= pos
+			print("\nThe ball has now disappeared.\n")
+	
+			""" Send the goal """
+			client_action.send_goal(goal)
 
-    # Wait until the ball has reached the destination
-    client_action.wait_for_result()
+			"""It waits for the robot to reach goal"""
+			client_action.wait_for_result()
 
-    time.sleep(10)
-
+			time.sleep(18)
+			
+		
 
 
 if __name__ == "__main__":
     try:
-        # Initialize the node
+        """To initialise this node"""
         rospy.init_node('move_ball')
 
-        # Create the action client and wait for the server
+        """Describing the sction client """
         client_action = actionlib.SimpleActionClient("ball/reaching_goal", exp_assignment2.msg.PlanningAction)
         client_action.wait_for_server()
+        """Calls the function to move the ball according to the command """
+        change_ball_position()
 
-        move_ball_position()
         
     except rospy.ROSInterruptException:
         pass

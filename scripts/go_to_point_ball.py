@@ -1,5 +1,9 @@
 #! /usr/bin/env python
-# import ros stuff
+
+## @package go_to_point_ball
+# Implements an action server that moves the ball.
+
+# Import ros stuff
 import rospy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, Point, Pose
@@ -11,15 +15,18 @@ import actionlib
 import actionlib.msg
 import exp_assignment2.msg
 
-# robot state variables
+# Robot state variables
 position_ = Point()
 pose_ = Pose()
 yaw_ = 0
-# machine state
+
+# Machine state
 state_ = 0
-# goal
+
+# Goal
 desired_position_ = Point()
-# parameters
+
+# Parameters
 yaw_precision_ = math.pi / 9  # +/- 20 degree allowed
 yaw_precision_2_ = math.pi / 90  # +/- 2 degree allowed
 dist_precision_ = 0.1
@@ -30,31 +37,27 @@ lb_a = -0.5
 ub_d = 2.0
 z_back = 0.25
 
-# publisher
+# Publishers
 pub = None
 pubz = None
 
-# action_server
+# Action_server
 act_s = None
 
-# callbacks
-
-
+# Callbacks
 def clbk_odom(msg):
     global position_
     global pose_
     global yaw_
 
-    # position
+    # Position
     position_ = msg.pose.pose.position
     pose_ = msg.pose.pose
-
 
 def change_state(state):
     global state_
     state_ = state
-    print ('State changed to [%s]' % state_)
-
+    print('Ball: state changed to [%s]' %state_)
 
 def go_straight_ahead(des_pos):
     global pub, state_, z_back
@@ -87,16 +90,14 @@ def go_straight_ahead(des_pos):
         pub.publish(twist_msg)
 
     else:
-        print ('Position error: [%s]' % err_pos)
+        print('Ball: position error [%s]' % err_pos)
         change_state(1)
-
 
 def done():
     twist_msg = Twist()
     twist_msg.linear.x = 0
     twist_msg.linear.y = 0
     pub.publish(twist_msg)
-
 
 def planning(goal):
 
@@ -116,7 +117,7 @@ def planning(goal):
 
     while not rospy.is_shutdown():
         if act_s.is_preempt_requested():
-            rospy.loginfo('Goal was preempted')
+            print('Ball: goal was preempted')
             act_s.set_preempted()
             success = False
             break
@@ -136,18 +137,17 @@ def planning(goal):
 
         rate.sleep()
     if success:
-        rospy.loginfo('Goal: Succeeded!')
+        print('Ball: goal succeeded!')
         act_s.set_succeeded(result)
 
 
 def main():
-    global pub, active_, act_s, pubz
-    rospy.init_node('go_to_point')
+    global pub, act_s, pubz
+    rospy.init_node('go_to_point_ball')
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     pubz = rospy.Publisher('/gazebo/set_link_state', LinkState, queue_size=1)
     sub_odom = rospy.Subscriber('odom', Odometry, clbk_odom)
-    act_s = actionlib.SimpleActionServer(
-        '/reaching_goal', exp_assignment2.msg.PlanningAction, planning, auto_start=False)
+    act_s = actionlib.SimpleActionServer('reaching_goal', exp_assignment2.msg.PlanningAction, planning, auto_start=False)
     act_s.start()
 
     rate = rospy.Rate(20)
