@@ -27,7 +27,7 @@ The state "sleep" is the initial state. In the "sleep" , the robot returns to it
 ## Package and File List
 The file tree shows the various packages in this project.
 
-![tree1](https://user-images.githubusercontent.com/47361086/98941699-60438000-2506-11eb-945e-3f5ad7b48c23.PNG)
+![download](https://user-images.githubusercontent.com/47361086/102724044-990b1c00-4332-11eb-87cb-15f261c86792.png)
 
 The **docs** folder contains the documentations obtained from doxgen.The **index.html** contains the html documentation of all the scripts used in this project.The **launch folder** has the **launch fil**e to run the project. The scripts are all contained inside the **src folder**.
 ## Installation and Running Procedure
