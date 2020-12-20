@@ -4,7 +4,7 @@
 This repository contains the Assignment 2 of Experimental Robotics Lab.The aim of this assignment is to implement a model based simulation for the behavioural architecure's state machine that was completed as assignment 1, for a pet (dog-like) robot that moves in a discrete 2D envirionment.The architecture involves nodes for changing the location of the ball, a finite state machine as the command manager and components for changing the position of the Robot and Ball to the desired goal locations.\
 The project was developed on ROS-kinetic and Python and state machine is implemented on Smach. 
 ## Software Architecture
-![expro_arch2](https://user-images.githubusercontent.com/47361086/98937966-9ed63c00-2500-11eb-920e-5707efc8079d.PNG)
+![env](https://user-images.githubusercontent.com/47361086/102724337-de304d80-4334-11eb-80b7-3033d7e5e08a.PNG)
 The picture above is the component diagram of the implemented system.The major components of the system are :
 * State Machine
 * Move_Ball
