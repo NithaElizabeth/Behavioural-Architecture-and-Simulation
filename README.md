@@ -5,7 +5,9 @@ This repository contains the Assignment 2 of Experimental Robotics Lab.The aim o
 The project was developed on ROS-kinetic and Python and state machine is implemented on Smach. 
 ## Software Architecture
 ![env](https://user-images.githubusercontent.com/47361086/102724337-de304d80-4334-11eb-80b7-3033d7e5e08a.PNG) \
-The picture above is the simulated envirionment of the implemented system.
+The picture above is the simulated envirionment of the implemented system along with the modelled robot.
+![robot](https://user-images.githubusercontent.com/47361086/102724371-22bbe900-4335-11eb-93fb-55086402a386.PNG) \
+The pet robot has a head of type sphere attached to a cylindrical neck.The head-neck setup is attached to the wheeled robot provided. \
 The major components of the system are :
 * State Machine
 * Move_Ball
