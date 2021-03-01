@@ -1,5 +1,5 @@
-# Experimental Robotics Laboratory - Assignment 2
-#### Behavioural Architecture and its Simulations
+# Behavioural Architecture and its Simulations in ROS
+#### Experimental Robotics Laboratory - Assignment 2 
 ## Intoduction
 This repository contains the Assignment 2 of Experimental Robotics Lab.The aim of this assignment is to implement a model based simulation for the behavioural architecure's state machine that was completed as assignment 1, for a pet (dog-like) robot that moves in a discrete 2D envirionment.The architecture involves nodes for changing the location of the ball, a finite state machine as the command manager and components for changing the position of the Robot and Ball to the desired goal locations.\
 The project was developed on ROS-kinetic and Python and state machine is implemented on Smach. 
